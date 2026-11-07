@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>Roadster Rush</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./src/style.css" />
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute">
+    <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M14 1 4 14h6l-2 9 10-13h-6l2-9z" /></symbol>
+  </svg>
+
+  <canvas id="game"></canvas>
+  <div id="vignette"></div>
+  <div id="flash"></div>
+  <div id="police-edge"></div>
+
+  <!-- HUD -->
+  <div id="hud" class="hidden">
+    <div class="hud-top">
+      <div class="score-box">
+        <div class="label">SCORE</div>
+        <div id="score" class="score">0</div>
+        <div id="mult" class="mult">×1</div>
+      </div>
+      <div class="right-box">
+        <div class="cells-box"><svg class="bolt"><use href="#i-bolt" /></svg><span id="cells">0</span></div>
+        <div id="dist" class="dist">0 m</div>
+      </div>
+    </div>
+    <div id="powers"></div>
+    <button id="pauseBtn" class="pause-btn" aria-label="Pause"><span></span><span></span></button>
+    <div id="toast"></div>
+    <div id="speedo"><span id="kmh">0</span><small>KM/H</small></div>
+  </div>
+
+  <!-- Main menu -->
+  <div id="menu" class="screen">
+    <div class="brand">
+      <div class="title"><span class="t1">ROADSTER</span><span class="t2">RUSH</span></div>
+      <div class="tag">Electric. Endless. Unstoppable.</div>
+    </div>
+    <div class="menu-bottom">
+      <div class="menu-actions">
+        <button id="playBtn" class="btn primary">DRIVE</button>
+        <button id="garageBtn" class="btn">GARAGE</button>
+      </div>
+      <div class="stats">BEST <b id="bestScore">0</b><i></i>BANK <svg class="bolt sm"><use href="#i-bolt" /></svg><b id="bank">0</b></div>
+      <div class="controls">
+        <span><kbd>←</kbd><kbd>→</kbd> switch lanes</span>
+        <span><kbd>↑</kbd>/<kbd>Space</kbd> jump</span>
+        <span><kbd>↓</kbd> low-ride / slam</span>
+        <span><kbd>P</kbd> pause</span>
+        <span><kbd>M</kbd> mute</span>
+        <span class="touch-only">Swipe to steer, jump and duck</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Garage -->
+  <div id="garage" class="screen hidden">
+    <div class="garage-panel">
+      <h2>GARAGE</h2>
+      <div class="bank-line">BANK <svg class="bolt sm"><use href="#i-bolt" /></svg><b id="garageBank">0</b></div>
+      <h3>Paint</h3>
+      <div id="paints" class="swatches"></div>
+      <h3>Underglow</h3>
+      <div id="glows" class="swatches"></div>
+      <div id="garageName" class="garage-name"></div>
+      <button id="garageBack" class="btn">BACK</button>
+    </div>
+  </div>
+
+  <!-- Pause -->
+  <div id="pause" class="screen hidden dim">
+    <div class="panel">
+      <h2>PAUSED</h2>
+      <button id="resumeBtn" class="btn primary">RESUME</button>
+      <button id="quitBtn" class="btn">QUIT</button>
+    </div>
+  </div>
+
+  <!-- Game over -->
+  <div id="over" class="screen hidden dim">
+    <div class="panel">
+      <h2 id="overTitle">WRECKED</h2>
+      <div id="overReason" class="reason"></div>
+      <div class="result-grid">
+        <div><small>SCORE</small><b id="overScore">0</b></div>
+        <div><small>BEST</small><b id="overBest">0</b></div>
+        <div><small>DISTANCE</small><b id="overDist">0 m</b></div>
+        <div><small>CELLS</small><b id="overCells">0</b></div>
+      </div>
+      <div id="newBest" class="new-best hidden">NEW BEST!</div>
+      <button id="retryBtn" class="btn primary">RETRY</button>
+      <button id="menuBtn" class="btn">MENU</button>
+    </div>
+  </div>
+
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>
